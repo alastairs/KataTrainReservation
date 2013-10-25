@@ -1,6 +1,10 @@
 import json
 
 class BookingService(object):
+  def reserve_on_train(self, train_data, seat_count):
+    return {
+      "booking_reference": "75bcd15"
+    }
   def reserve(self, train_id, seat_count):
     return {
       "train_id": train_id,
