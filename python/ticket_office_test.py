@@ -22,5 +22,18 @@ class TestBookingService(unittest.TestCase):
     }
     assert bs.reserve_on_train(train_data, 1)["booking_reference"]
 
+  def test_does_not_provide_reference_with_invalid_reservation(self):
+    bs = BookingService()
+    train_data = {
+      "seats": { 
+        "1A" : {
+          "booking_reference": "",
+          "coach": "A",
+          "seat_number":"1"
+        }
+      }
+    }
+    assert not bs.reserve_on_train(train_data, 2)["booking_reference"]
+
 if __name__ == '__main__':
     unittest.main()

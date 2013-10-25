@@ -2,6 +2,8 @@ import json
 
 class BookingService(object):
   def reserve_on_train(self, train_data, seat_count):
+    if seat_count > 1:
+      return {"booking_reference": ""}
     return {
       "booking_reference": "75bcd15"
     }
