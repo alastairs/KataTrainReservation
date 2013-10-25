@@ -1,11 +1,18 @@
 import json
 
+class BookingReferenceServiceClient(object):
+  def get_reference(self):
+    return "75bcd15"
+
 class BookingService(object):
+  def __init__(self, booking_reference_service_client):
+    self.booking_reference_service_client = booking_reference_service_client
+
   def reserve_on_train(self, train_data, seat_count):
     if seat_count > 1:
       return {"booking_reference": ""}
     return {
-      "booking_reference": "75bcd15"
+      "booking_reference": self.booking_reference_service_client.get_reference()
     }
   def reserve(self, train_id, seat_count):
     return {
@@ -16,7 +23,7 @@ class BookingService(object):
 
 class TicketOffice(object):
     def __init__(self):
-      self.bookingService = BookingService()
+      self.bookingService = BookingService(BookingReferenceServiceClient())
     def reserve(self, train_id, seat_count):
         return json.dumps(self.bookingService.reserve(train_id,seat_count))
 
