@@ -38,12 +38,5 @@ class TrainReservationTest(unittest.TestCase):
         assert "1A" == reservation["seats"][0]
         assert "75bcd15" == reservation["booking_reference"]
 
-
-    def test_reserve_seats_via_cmd(self):
-        response = subprocess.check_output([interpreter, reservation_script, "express2000", "4"], stderr=subprocess.STDOUT, universal_newlines = True)
-        reservation = json.loads(response)
-        
-        assert "express_2000" == reservation["train_id"]
-        assert 4 == len(reservation["seats"])
-        assert "1A" == reservation["seats"][0]
-        assert "75bcd15" == reservation["booking_reference"]
+if __name__ == "__main__":
+  unittest.main()
